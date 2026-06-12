@@ -1,7 +1,7 @@
 /* ── TiemBanh project page ──────────────────────────────────────────────── */
 
 .tiembanh {
-  padding: 60px 0 120px;
+  padding: 0 0 120px;
   font-family: 'Microsoft Yi Baiti', sans-serif;
   overflow-x: hidden;
 }
@@ -9,18 +9,19 @@
 /* INTRO */
 .tiembanh__intro {
   position: relative;
-  max-width: 900px;
-  margin: 0 auto 48px;
-  padding: 0 24px;
+  max-width: 100%;
+  margin: 0 0 48px;
+  padding: 64px 40px 0;
 }
 
 .tiembanh__watermark {
   position: absolute;
-  top: -10px;
-  right: 24px;
-  width: 420px;
+  top: 40px;
+  right: 0;
+  width: 55vw;
+  max-width: 680px;
   height: auto;
-  opacity: 0.12;
+  opacity: 0.43;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -30,10 +31,12 @@
   position: relative;
   z-index: 1;
   font-family: 'Monotype Corsiva', 'Brush Script MT', cursive;
-  font-size: clamp(36px, 6vw, 64px);
+  font-size: clamp(52px, 8vw, 70px);
   font-weight: 400;
-  margin: 0 0 16px;
-  line-height: 1.1;
+  margin: 15px 0 24px;
+  line-height: 1.05;
+  max-width: 600px;
+  letter-spacing: -0.073em;
 }
 
 .tiembanh__meta {
@@ -48,10 +51,12 @@
 .tiembanh__desc {
   position: relative;
   z-index: 1;
-  font-size: 13px;
-  line-height: 1.7;
-  max-width: 480px;
+  font-size: 20px;
+  line-height: 1.9;
+  max-width: 800px;
   margin: 0;
+  text-align: justify;
+  -webkit-text-stroke: 0.5px currentColor;
 }
 
 /* ── MARQUEE ─────────────────────────────────────────────────────────────── */
@@ -91,7 +96,7 @@
   display: block;
 }
 
-/* ── Static video rows (no scroll) ──────────────────────────────────────── */
+/* ── Static video rows ───────────────────────────────────────────────────── */
 
 .video-row {
   display: flex;
@@ -105,7 +110,7 @@
 .video-row .marquee-item {
   flex-shrink: 0;
   overflow: hidden;
-  background: #111; /* shows while video loads */
+  background: #111;
 }
 
 .video-row .marquee-item video {
@@ -147,7 +152,9 @@
 
 /* Mobile */
 @media (max-width: 600px) {
-  .tiembanh__watermark { font-size: 120px; }
+  .tiembanh__intro { padding: 80px 20px 0; }
+  .tiembanh__watermark { width: 80vw; }
+  .tiembanh__title { font-size: clamp(40px, 10vw, 64px); }
 
   .tiembanh__bottom {
     grid-template-columns: 1fr 1fr;

@@ -89,8 +89,8 @@ export default function TiemBanh() {
 
   const videoRow1 = ["/videos/video-01-h264.mp4", "/videos/video-02-h264.mp4", "/videos/video-03-h264.mp4"];
   const videoRow2 = ["/videos/video-04-h264.mp4", "/videos/video-05-h264.mp4"];
-  const videoRow3 = ["/videos/video-00-h264.mp4", "/videos/video-06-h264.mp4"];
-  const videoRow4 = ["/videos/video-08-h264.mp4", "/videos/video-07-h264.mp4"];
+  const videoRow3 = ["/videos/output-compressed.mp4", "/videos/video-06-h264.mp4"];
+  const videoRow4 = ["/videos/video-03-h264.mp4", "/videos/video-04-h264.mp4"];
 
   const photoRow3 = [photo01, photo02, photo03, photo04];
 
@@ -140,7 +140,7 @@ export default function TiemBanh() {
       {/* ── BOTTOM — 2 videos + caption ─────────────────────────── */}
       <section className="tiembanh__bottom">
         <video
-          src="/videos/video-01-h264.mp4"
+          src="/videos/video-09-h264.mp4"
           autoPlay
           muted
           loop
@@ -148,7 +148,7 @@ export default function TiemBanh() {
           className="tiembanh__bottom-video"
         />
         <video
-          src="/videos/video-02-h264.mp4"
+          src="/videos/video-10-h264.mp4"
           autoPlay
           muted
           loop
@@ -170,7 +170,7 @@ export default function TiemBanh() {
       <section className="tiembanh__banner">
         <div className="tiembanh__banner-wrap">
           <video
-            src="/videos/tiembanh-bot-h264.mp4"
+            src="/videos/output-compressed2.mp4"
             autoPlay
             muted
             loop

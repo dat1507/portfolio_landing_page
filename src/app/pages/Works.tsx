@@ -1,20 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router"; 
 import { motion } from "motion/react";
 import { worksData } from "../data/works";
 import WorkCard from "../components/portfolio/WorkCard";
 
-/**
- * Layout:
- * - Fixed header placeholder (150px) to account for the sticky nav
- * - .site-content wrapper: margin 4% on each side (92% width)
- * - .project-covers: flex-wrap, 2 columns on desktop, 1 on mobile
- * - Back-to-top button fixed bottom-right
- */
 export default function Works() {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Reverted to standard window scrolling
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -45,10 +36,8 @@ export default function Works() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-      {/* Space for the fixed header */}
       <div className="works-header-placeholder" />
 
-      {/* Main gallery grid (Standard layout, no snapping/fading) */}
       <div className="works-site-content">
         <main>
           <section className="project-covers" aria-label="Portfolio works">
@@ -59,26 +48,6 @@ export default function Works() {
         </main>
       </div>
 
-      {/* Footer — Styled with Monotype Corsiva and linked to Photography */}
-      <footer className="works-footer flex flex-col items-center justify-center gap-2 pt-16 pb-24 w-full">
-        <Link
-          to="/photography"
-          className="text-black text-3xl md:text-4xl hover:opacity-60 transition-opacity"
-          style={{ fontFamily: "'Monotype Corsiva', cursive" }}
-        >
-          Photography
-        </Link>
-        <a 
-          href="#" 
-          onClick={(e) => { e.preventDefault(); scrollToTop(); }}
-          className="text-black text-3xl md:text-4xl hover:opacity-60 transition-opacity"
-          style={{ fontFamily: "'Monotype Corsiva', cursive" }}
-        >
-          Illustrations
-        </a>
-      </footer>
-
-      {/* Fixed back-to-top button */}
       <motion.button
         className="back-to-top-fixed"
         onClick={scrollToTop}

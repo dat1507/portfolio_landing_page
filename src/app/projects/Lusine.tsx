@@ -13,6 +13,12 @@ import lu09 from "./Lusine-09.jpg";
 import lu10 from "./Lusine-10.jpg";
 import lu11 from "./Lusine-11.jpg";
 import lu12 from "./Lusine-12.jpg";
+import lu13 from "./Lusine-13.jpg";
+import lu14 from "./Lusine-14.jpg";
+import lu15 from "./Lusine-15.jpg";
+import lu16 from "./Lusine-16.jpg";
+import lu17 from "./Lusine-17.jpg";
+import lu18 from "./Lusine-18.jpg";
 
 // ── Placeholder component ─────────────────────────────────────────────────
 const IMG = ({ src, style }: { src?: string; style?: React.CSSProperties }) =>
@@ -76,12 +82,12 @@ export default function Lusine() {
   const gridPhotos: (string | null)[] = [lu08, lu09, lu10];
   const sidePhotos: (string | null)[] = [lu11, lu12];
   // 👇 Replace nulls with imports when ready: import tote01 from "./tote-01.jpg" etc.
-  const totePhotos: (string | null)[] = [null, null, null, null, null, null];
+  const totePhotos: (string | null)[] = [lu13, lu14, lu15, lu16, lu17, lu18];
 
   const reelsMenu   = ["/videos/lu1-h264.mp4",  "/videos/lu2-h264.mp4",  "/videos/lu3-h264.mp4"];
   const reelsDrinks = ["/videos/lu4-h264.mp4",  "/videos/lu5-h264.mp4",  "/videos/lu6-h264.mp4"];
   const reelsCake   = ["/videos/lu10-h264.mp4", "/videos/lu11-h264.mp4", "/videos/lu9-h264.mp4"];
-  const reelsOther  = [undefined, undefined, undefined, undefined];
+  const reelsOther  = ["/videos/lu-14-h264.mp4",  "/videos/lu-15-h264.mp4",  "/videos/lu-16-h264.mp4", "/videos/lu-17-h264.mp4"];
 
   return (
     <div className="lusine">
@@ -167,10 +173,10 @@ export default function Lusine() {
       {/* ── CENTERED PORTRAIT PAIR ────────────────────────────── */}
       <div className="lusine__sidebyside lusine__reels--centered">
         <div style={{ aspectRatio: "9/16", overflow: "hidden", background: "#222" }}>
-          <ReelVideo src={undefined} />
+          <ReelVideo src="/videos/lu-12-h264.mp4" />
         </div>
         <div style={{ aspectRatio: "9/16", overflow: "hidden", background: "#222" }}>
-          <ReelVideo src={undefined} />
+          <ReelVideo src="/videos/lu-13-h264.mp4" />
         </div>
       </div>
 

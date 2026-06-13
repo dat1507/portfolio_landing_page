@@ -29,23 +29,27 @@ function MarqueeRow({
   itemWidth = "220px",
   itemAspect = "1 / 1",
   reverse = false,
+  objectFit = "cover",
+  gap = "4px",
 }: {
   items: (string | null)[];
   speed?: number;
   itemWidth?: string;
   itemAspect?: string;
   reverse?: boolean;
+  objectFit?: "cover" | "contain";
+  gap?: string;
 }) {
   const doubled = [...items, ...items];
   return (
     <div className="marquee-track">
       <div
         className="marquee-inner"
-        style={{ animationDuration: `${speed}s`, animationDirection: reverse ? "reverse" : "normal" }}
+        style={{ animationDuration: `${speed}s`, animationDirection: reverse ? "reverse" : "normal", gap }}
       >
         {doubled.map((src, i) => (
-          <div key={i} className="marquee-item" style={{ width: itemWidth, aspectRatio: itemAspect }}>
-            <IMG src={src ?? undefined} />
+          <div key={i} className="marquee-item" style={{ width: itemWidth, aspectRatio: itemAspect, background: "#fff" }}>
+            <IMG src={src ?? undefined} style={{ objectFit }} />
           </div>
         ))}
       </div>
@@ -68,7 +72,6 @@ function ReelVideo({ src }: { src?: string }) {
 // ── Lusine ────────────────────────────────────────────────────────────────
 export default function Lusine() {
 
-  // 👇 Replace null with your imports as you add files
   const thumbs: (string | null)[]      = [lu01, lu02, lu03, lu04, lu05, lu06, lu07];
   const gridPhotos: (string | null)[]  = [lu08, lu09, lu10];
   const sidePhotos: (string | null)[]  = [lu11, lu12];
@@ -105,57 +108,79 @@ export default function Lusine() {
         <p className="lusine__caption" style={{ paddingLeft: 0, marginTop: 16 }}>
           A thumbnail ads for <strong>NEW MENU 2025</strong> ...
         </p>
+
+        {/* ── white cover to hide watermark below the border line ── */}
+        <div style={{
+          position: "absolute",
+          bottom: 0,
+          left: "50%",
+          right: 0,
+          height: "80px",
+          background: "white",
+          zIndex: 1,
+          pointerEvents: "none",
+        }} />
       </section>
 
       {/* ── THUMBNAIL MARQUEE ─────────────────────────────────── */}
-      <MarqueeRow items={thumbs} speed={35} />
+      <div style={{ marginTop: "-80px", position: "relative", zIndex: 2 }}>
+        <MarqueeRow items={thumbs} speed={35} itemAspect="3 / 4" objectFit="contain" gap="16px" />
+      </div>
+
+      {/* ── DIVIDER ───────────────────────────────────────────── */}
+      <hr className="lusine__marquee-divider" />
 
       {/* ── SOCIAL POST GRID ──────────────────────────────────── */}
       <div className="lusine__grid">
         {gridPhotos.map((src, i) => (
-          <div key={i} style={{ aspectRatio: "1/1" }}><IMG src={src ?? undefined} /></div>
+          <div key={i}>
+            <IMG src={src ?? undefined} style={{ objectFit: "cover", height: "auto", width: "100%" }} />
+          </div>
         ))}
       </div>
 
       {/* ── SIDE BY SIDE + CAPTION ────────────────────────────── */}
-      <div className="lusine__sidebyside">
-        {sidePhotos.map((src, i) => (
-          <div key={i} style={{ aspectRatio: "4/3" }}><IMG src={src ?? undefined} /></div>
-        ))}
-      </div>
-      <div className="lusine__caption">
-        <p>A relaxed photoshoot with wine and steak</p>
-        <p>at L'Usine</p>
+      <div className="lusine__sidebyside-row">
+        <div className="lusine__caption lusine__sidebyside-caption">
+          <p>A relaxed photoshoot with wine and steak</p>
+          <p style={{ paddingLeft: "400px" }}>at L'Usine</p>
+        </div>
+        <div className="lusine__sidebyside">
+          {sidePhotos.map((src, i) => (
+            <div key={i}><IMG src={src ?? undefined} style={{ objectFit: "cover", height: "auto", width: "100%" }} /></div>
+          ))}
+        </div>
       </div>
 
       {/* ── CREATIVE REELS FOR NEW MENU ───────────────────────── */}
-      <p className="lusine__section-label">Creative Reels for New Menu</p>
+      <p className="lusine__section-label"><strong>Creative Reels</strong> for New Menu</p>
       <div className="lusine__reels">
         {reelsMenu.map((src, i) => <ReelVideo key={i} src={src} />)}
       </div>
-      <div className="lusine__caption"><p>A Teasing Reels begin</p></div>
+      <div className="lusine__caption lusine__caption--right"><p><strong>A Teasing Reels</strong> begin</p></div>
 
       {/* ── NEW DRINKS REELS ──────────────────────────────────── */}
-      <p className="lusine__section-label">New Drinks Reels</p>
-      <div className="lusine__reels">
+      <p className="lusine__section-label"><strong>New Drinks</strong> Reels</p>
+      <div style={{ marginLeft: "auto", maxWidth: "75%", display: "flex", gap: "4px" }}>
         {reelsDrinks.map((src, i) => <ReelVideo key={i} src={src} />)}
       </div>
-      <div className="lusine__caption">
-        
-      </div>
+      <div className="lusine__caption"></div>
 
       {/* ── NEW CAKE REELS ────────────────────────────────────── */}
-      <p className="lusine__section-label">New Cake Reels</p>
-      <div className="lusine__reels">
+      <hr className="lusine__marquee-divider" />
+      <div style={{ marginRight: "auto", maxWidth: "75%", display: "flex", gap: "4px" }}>
         {reelsCake.map((src, i) => <ReelVideo key={i} src={src} />)}
       </div>
-      <div className="lusine__caption">
-        
-      </div>
+      <div className="lusine__caption"></div>
 
       {/* ── FULL WIDTH IMAGE ──────────────────────────────────── */}
-      <div className="lusine__full-img" style={{ marginTop: 8, aspectRatio: "16/7" }}>
-        <IMG src={fullPhoto ?? undefined} style={{ height: "100%" }} />
+      <div className="lusine__sidebyside" style={{ marginTop: 8 }}>
+        <div style={{ aspectRatio: "9/16", overflow: "hidden", background: "#222" }}>
+          <ReelVideo src={undefined} />
+        </div>
+        <div style={{ aspectRatio: "9/16", overflow: "hidden", background: "#222" }}>
+          <ReelVideo src={undefined} />
+        </div>
       </div>
       <div className="lusine__caption"><p>Tote Bag Yellow Version</p></div>
 
@@ -167,13 +192,11 @@ export default function Lusine() {
       </div>
 
       {/* ── OTHER REELS ───────────────────────────────────────── */}
-      <p className="lusine__section-label">Other Reels</p>
+      <p className="lusine__section-label"><strong>Other</strong> Reels</p>
       <div className="lusine__reels">
         {reelsOther.map((src, i) => <ReelVideo key={i} src={src} />)}
       </div>
-      <div className="lusine__caption" style={{ marginBottom: 48 }}>
-        
-      </div>
+      <div className="lusine__caption" style={{ marginBottom: 48 }}></div>
 
     </div>
   );

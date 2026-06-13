@@ -14,7 +14,7 @@ import lu10 from "./Lusine-10.jpg";
 import lu11 from "./Lusine-11.jpg";
 import lu12 from "./Lusine-12.jpg";
 
-// ── Placeholder component — replace src with your actual import ───────────
+// ── Placeholder component ─────────────────────────────────────────────────
 const IMG = ({ src, style }: { src?: string; style?: React.CSSProperties }) =>
   src ? (
     <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", ...style }} />
@@ -48,7 +48,7 @@ function MarqueeRow({
         style={{ animationDuration: `${speed}s`, animationDirection: reverse ? "reverse" : "normal", gap }}
       >
         {doubled.map((src, i) => (
-          <div key={i} className="marquee-item" style={{ width: itemWidth, aspectRatio: itemAspect, background: "#fff" }}>
+          <div key={i} className="marquee-item" style={{ width: itemWidth, aspectRatio: itemAspect, background: "#222" }}>
             <IMG src={src ?? undefined} style={{ objectFit }} />
           </div>
         ))}
@@ -72,16 +72,16 @@ function ReelVideo({ src }: { src?: string }) {
 // ── Lusine ────────────────────────────────────────────────────────────────
 export default function Lusine() {
 
-  const thumbs: (string | null)[]      = [lu01, lu02, lu03, lu04, lu05, lu06, lu07];
-  const gridPhotos: (string | null)[]  = [lu08, lu09, lu10];
-  const sidePhotos: (string | null)[]  = [lu11, lu12];
-  const fullPhoto: string | null       = null;
-  const totePhotos: (string | null)[]  = [null, null, null];
+  const thumbs: (string | null)[]     = [lu01, lu02, lu03, lu04, lu05, lu06, lu07];
+  const gridPhotos: (string | null)[] = [lu08, lu09, lu10];
+  const sidePhotos: (string | null)[] = [lu11, lu12];
+  // 👇 Replace nulls with imports when ready: import tote01 from "./tote-01.jpg" etc.
+  const totePhotos: (string | null)[] = [null, null, null, null, null, null];
 
-  const reelsMenu   = ["/videos/lu1-h264.mp4", "/videos/lu2-h264.mp4", "/videos/lu3-h264.mp4"];
-  const reelsDrinks = ["/videos/lu4-h264.mp4", "/videos/lu5-h264.mp4", "/videos/lu6-h264.mp4"];
+  const reelsMenu   = ["/videos/lu1-h264.mp4",  "/videos/lu2-h264.mp4",  "/videos/lu3-h264.mp4"];
+  const reelsDrinks = ["/videos/lu4-h264.mp4",  "/videos/lu5-h264.mp4",  "/videos/lu6-h264.mp4"];
   const reelsCake   = ["/videos/lu10-h264.mp4", "/videos/lu11-h264.mp4", "/videos/lu9-h264.mp4"];
-  const reelsOther  = [undefined, undefined, undefined];
+  const reelsOther  = [undefined, undefined, undefined, undefined];
 
   return (
     <div className="lusine">
@@ -108,22 +108,11 @@ export default function Lusine() {
         <p className="lusine__caption" style={{ paddingLeft: 0, marginTop: 16 }}>
           A thumbnail ads for <strong>NEW MENU 2025</strong> ...
         </p>
-
-        {/* ── white cover to hide watermark below the border line ── */}
-        <div style={{
-          position: "absolute",
-          bottom: 0,
-          left: "50%",
-          right: 0,
-          height: "80px",
-          background: "white",
-          zIndex: 1,
-          pointerEvents: "none",
-        }} />
+        <div className="lusine__watermark-cover" />
       </section>
 
       {/* ── THUMBNAIL MARQUEE ─────────────────────────────────── */}
-      <div style={{ marginTop: "-80px", position: "relative", zIndex: 2 }}>
+      <div className="lusine__marquee-intro">
         <MarqueeRow items={thumbs} speed={35} itemAspect="3 / 4" objectFit="contain" gap="16px" />
       </div>
 
@@ -143,11 +132,13 @@ export default function Lusine() {
       <div className="lusine__sidebyside-row">
         <div className="lusine__caption lusine__sidebyside-caption">
           <p>A relaxed photoshoot with wine and steak</p>
-          <p style={{ paddingLeft: "400px" }}>at L'Usine</p>
+          <p className="lusine__caption--indent">at L'Usine</p>
         </div>
         <div className="lusine__sidebyside">
           {sidePhotos.map((src, i) => (
-            <div key={i}><IMG src={src ?? undefined} style={{ objectFit: "cover", height: "auto", width: "100%" }} /></div>
+            <div key={i}>
+              <IMG src={src ?? undefined} style={{ objectFit: "cover", height: "auto", width: "100%" }} />
+            </div>
           ))}
         </div>
       </div>
@@ -157,24 +148,24 @@ export default function Lusine() {
       <div className="lusine__reels">
         {reelsMenu.map((src, i) => <ReelVideo key={i} src={src} />)}
       </div>
-      <div className="lusine__caption lusine__caption--right"><p><strong>A Teasing Reels</strong> begin</p></div>
+      <div className="lusine__caption lusine__caption--right">
+        <p><strong>A Teasing Reels</strong> begin</p>
+      </div>
 
       {/* ── NEW DRINKS REELS ──────────────────────────────────── */}
       <p className="lusine__section-label"><strong>New Drinks</strong> Reels</p>
-      <div style={{ marginLeft: "auto", maxWidth: "75%", display: "flex", gap: "4px" }}>
+      <div className="lusine__reels--drinks">
         {reelsDrinks.map((src, i) => <ReelVideo key={i} src={src} />)}
       </div>
-      <div className="lusine__caption"></div>
 
       {/* ── NEW CAKE REELS ────────────────────────────────────── */}
-      <hr className="lusine__marquee-divider" />
-      <div style={{ marginRight: "auto", maxWidth: "75%", display: "flex", gap: "4px" }}>
+      <p className="lusine__section-label lusine__section-label--right"><strong>New Cake</strong> Reels</p>
+      <div className="lusine__reels--cake">
         {reelsCake.map((src, i) => <ReelVideo key={i} src={src} />)}
       </div>
-      <div className="lusine__caption"></div>
 
-      {/* ── FULL WIDTH IMAGE ──────────────────────────────────── */}
-      <div className="lusine__sidebyside" style={{ marginTop: 8 }}>
+      {/* ── CENTERED PORTRAIT PAIR ────────────────────────────── */}
+      <div className="lusine__sidebyside lusine__reels--centered">
         <div style={{ aspectRatio: "9/16", overflow: "hidden", background: "#222" }}>
           <ReelVideo src={undefined} />
         </div>
@@ -182,13 +173,14 @@ export default function Lusine() {
           <ReelVideo src={undefined} />
         </div>
       </div>
-      <div className="lusine__caption"><p>Tote Bag Yellow Version</p></div>
 
-      {/* ── TOTE BAG ROW ──────────────────────────────────────── */}
-      <div className="lusine__tote">
-        {totePhotos.map((src, i) => (
-          <div key={i} style={{ aspectRatio: "3/4" }}><IMG src={src ?? undefined} /></div>
-        ))}
+      {/* ── TOTE BAG SECTION ──────────────────────────────────── */}
+      <p className="lusine__section-label lusine__section-label--flush"><strong>Tote Bag</strong> Yellow Version</p>
+      <div className="lusine__caption lusine__caption--right">
+        <p><strong>New Promo</strong> 2025</p>
+      </div>
+      <div className="lusine__marquee-tote">
+        <MarqueeRow items={totePhotos} speed={30} itemWidth="260px" itemAspect="3 / 4" objectFit="cover" gap="4px" />
       </div>
 
       {/* ── OTHER REELS ───────────────────────────────────────── */}

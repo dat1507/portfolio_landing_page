@@ -170,7 +170,7 @@ export default function TiemBanh() {
       <section className="tiembanh__banner">
         <div className="tiembanh__banner-wrap">
           <video
-            src="/videos/output-compressed2.mp4"
+            src="https://res.cloudinary.com/drith9etg/video/upload/v1781389200/tiembanh-bot-h264_gxjwdv.mp4"
             autoPlay
             muted
             loop

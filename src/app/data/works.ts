@@ -21,4 +21,10 @@ export const worksData: Work[] = [
     date: "2025",
     imageSrc: "https://res.cloudinary.com/drith9etg/image/upload/v1781390819/cover_rd6qo9.jpg",
   },
+   {
+    id: "galbi",        // URL slug
+    title: "Yusung Galbi | TYPE",  // hover text
+    date: "2026",
+    imageSrc: "/works/your-new-project/cover.jpg",  // cover image
+  },
 ];

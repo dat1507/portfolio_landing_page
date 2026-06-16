@@ -1,0 +1,106 @@
+/* ── Galbi project page ───────────────────────────────────────────────────── */
+
+.galbi .lusine__intro {
+  margin-bottom: 0;
+}
+
+.galbi .lusine__intro::before {
+  height: 67px;
+}
+
+.galbi .lusine__intro::after {
+  display: none;
+}
+
+.galbi .lusine__intro .lusine__section-label {
+  position: relative;
+  z-index: 3;
+}
+
+/* ── FULL WIDTH MENU IMAGE ───────────────────────────────────────────────── */
+.galbi__full {
+  width: 100%;
+  margin-top: -40px;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
+}
+
+.galbi__full img,
+.galbi__full > div {
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  display: block;
+}
+
+/* ── SIDE BY SIDE ────────────────────────────────────────────────────────── */
+.galbi__sidebyside {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.galbi__sidebyside-item {
+  overflow: hidden;
+}
+
+.galbi__sidebyside-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: unset;
+}
+
+.galbi__sidebyside-item > div {
+  width: 100%;
+  min-height: 300px;
+}
+
+/* ── CASH VOUCHER ────────────────────────────────────────────────────────── */
+.galbi__voucher {
+  max-width: 700px;
+  margin: 24px auto;
+}
+
+.galbi__voucher img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: unset;
+}
+
+.galbi__voucher > div {
+  width: 100%;
+  min-height: 300px;
+}
+
+/* ── BILLBOARD ───────────────────────────────────────────────────────────── */
+.galbi__billboard {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.galbi__billboard img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: unset;
+}
+
+.galbi__billboard > div {
+  width: 100%;
+  min-height: 300px;
+}
+
+.galbi__billboard--small {
+  max-width: 90%;
+  margin: 0 auto 4px;
+}
+
+/* ── MOBILE ──────────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .galbi__sidebyside    { grid-template-columns: 1fr; }
+  .galbi__billboard--small { max-width: 100%; }
+}
